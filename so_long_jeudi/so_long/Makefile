@@ -1,7 +1,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror
 
 
 MLX_LINUX = ./minilibx-linux/

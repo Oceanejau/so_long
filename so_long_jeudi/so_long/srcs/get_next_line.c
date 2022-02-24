@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 12:22:10 by ojauregu          #+#    #+#             */
-/*   Updated: 2020/09/09 12:22:14 by ojauregu         ###   ########.fr       */
+/*   Created: 2022/02/24 21:08:49 by ojauregu          #+#    #+#             */
+/*   Updated: 2022/02/24 21:11:50 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		ft_check(char *str)
+int	ft_check(char *str)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (str[n] != '\n' && str[n] != '\0')
@@ -35,8 +35,9 @@ char	*ft_read_suite(int fd, int n, char *strr, int *rid)
 	if (*rid < 0)
 		return (NULL);
 	buf[*rid] = '\0';
-	if (!(stock = (char *)malloc(sizeof(char) * (n + BUFFER_SIZE + 1))))
-		return (NULL);
+	stock = (char *)malloc(sizeof(char) * (n + BUFFER_SIZE + 1))
+		if (!stock)
+			return (NULL);
 	x = 0;
 	while (x < n + BUFFER_SIZE + 1)
 		stock[x++] = '\0';
@@ -51,7 +52,7 @@ char	*ft_read_suite(int fd, int n, char *strr, int *rid)
 	return (stock);
 }
 
-int		ft_read(char **str, int fd)
+int	ft_read(char **str, int fd)
 {
 	int		n;
 	int		rid;
@@ -74,18 +75,20 @@ int		ft_read(char **str, int fd)
 	return (rid);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*str[512];
 	int			rid;
 
 	if (!str[fd])
 	{
-		if (!(str[fd] = (char *)malloc(sizeof(char) * 1)))
-			return (-1);
+		str[fd] = (char *)malloc(sizeof(char) * 1)
+			if (!str[fd])
+				return (-1);
 		str[fd][0] = '\0';
 	}
-	if ((rid = ft_read(&(str[fd]), fd)) < 0)
+	rid = ft_read(&(str[fd]), fd);
+	if (rid < 0)
 		return (free_for_rtn(str[fd], -1));
 	*line = ft_nextline(&str[fd]);
 	if (*line == NULL || str[fd] == NULL)

@@ -1,31 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trgb.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/24 21:03:30 by ojauregu          #+#    #+#             */
+/*   Updated: 2022/02/24 21:04:53 by ojauregu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-/*
-int	create_trgb(t_trgb *trgb)
-{
-	return (trgb->t << 24 | trgb->r << 16 | trgb->g << 8 || trgb->b);
-}
-
-int	get_t(t_trgb *trgb)
-{
-	return ((trgb->trgb >> 24) & 0xFF);
-}
-
-int	get_r(t_trgb *trgb)
-{
-	return ((trgb->trgb >> 16) & 0xFF);
-}
-
-int	get_g(t_trgb *trgb)
-{
-	return ((trgb->trgb >> 8) & 0xFF);
-}
-
-int	get_b(t_trgb *trgb)
-{
-	return (trgb->trgb & 0xFF);
-}
-*/
-///////////////////////////////
 
 int	create_trgb(t_trgb *trgb)
 {

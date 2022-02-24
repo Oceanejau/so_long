@@ -8,23 +8,23 @@ int	close_it(t_mlx *mlx)
 }
 
 /*void	loopy_loop(t_mlx *mlx)
-{
-	int	x;
+  {
+  int	x;
 
-	x = 0;
-	mercotte(&*mlx);
-	printf("entre dans looooppy loooop\n");
+  x = 0;
+  mercotte(&*mlx);
+  printf("entre dans looooppy loooop\n");
 //	cot(&*mlx, mlx->cot_y, mlx->cot_x);
-	if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
-	{
-		while (x < 50)
-			x++;
-		close_it(&*mlx);
-	}
-	return;
+if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
+{
+while (x < 50)
+x++;
+close_it(&*mlx);
+}
+return;
 }
 
-*/
+ */
 void	obsy(t_mlx *mlx)
 {
 	int x;
@@ -57,7 +57,7 @@ void	mercotte(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->len_x)
 		{
-		//	printf("passe dans mercotte\n");
+			//	printf("passe dans mercotte\n");
 			if (mlx->ber[y][x] >= 80)
 			{
 				mlx->cot_x = x;
@@ -66,12 +66,12 @@ void	mercotte(t_mlx *mlx)
 				mlx->cot_y = y;
 			}
 			if (mlx->ber[y][x] == 67)
-					mlx->col++;
+				mlx->col++;
 			x++;
 		}
 		y++;
 	}
-//	printf("mlx->cot_x %d, %d, collectibles = %d\n", mlx->cot_x, mlx->cot_y, mlx->col);
+	//	printf("mlx->cot_x %d, %d, collectibles = %d\n", mlx->cot_x, mlx->cot_y, mlx->col);
 	return;
 }
 
@@ -104,7 +104,7 @@ void	mur_test(t_mlx *mlx)
 	int	x;
 
 	x = 0;
-//	printf("len y  =%d x = %d\n", mlx->len_y, mlx->len_x);
+	//	printf("len y  =%d x = %d\n", mlx->len_y, mlx->len_x);
 	while (x < mlx->len_x && mlx->err_mur == 0)
 	{
 		printf("%d\n", mlx->ber[0][x]);
@@ -112,7 +112,7 @@ void	mur_test(t_mlx *mlx)
 			mlx->err_mur = -1;
 		x++;
 	}
-//	printf("fin de x\n");
+	//	printf("fin de x\n");
 	x = 0;
 	while (x < mlx->len_y && mlx->err_mur == 0)
 	{
@@ -133,14 +133,14 @@ int	err_cl(t_mlx *mlx, char *str)
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
 	free(mlx->ber);
-//	mlx_destroy_window(mlx->mlx, mlx->win);
-//	free(mlx->mur);
-//	free(mlx->cot);
-//	free(mlx->sun);
-//	free(mlx->sol);
-//	free(mlx->nid);
-//	free(mlx->obs);
-//	free(mlx->cot);
+	//	mlx_destroy_window(mlx->mlx, mlx->win);
+	//	free(mlx->mur);
+	//	free(mlx->cot);
+	//	free(mlx->sun);
+	//	free(mlx->sol);
+	//	free(mlx->nid);
+	//	free(mlx->obs);
+	//	free(mlx->cot);
 	mlx->close = 1;
 	return (-1);
 }
@@ -166,7 +166,7 @@ void	bear_me(t_mlx *mlx)
 		err_cl(&*mlx, "Pas de sorties sur la map.");
 	else if (mlx->err_nid > 1)
 		err_cl(&*mlx, "Trop de sorties sur la map.");
-//	printf("%d\n", mlx->err_nid);
+	//	printf("%d\n", mlx->err_nid);
 	return;
 }
 
@@ -177,11 +177,11 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 	int	x;
 
 	x = 0;
-//	mlx->gnl = 1;
+	//	mlx->gnl = 1;
 	y = 0;
-//	mlx->len = -1;
-//	mlx->P_x = -1;
-//	mlx->E_x = - 1;
+	//	mlx->len = -1;
+	//	mlx->P_x = -1;
+	//	mlx->E_x = - 1;
 	while (nom_map[x] != '\0')
 		x++;
 	if (nom_map[x - 4] == '.' && nom_map[x - 3] == 'b' && nom_map[x - 2] == 'e' && nom_map[x - 1] == 'r')
@@ -210,10 +210,10 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 		return;
 	}
 	mlx->len_x = mlx->len;
-//	obsy(&*mlx);//mets les obstacles en 2(buche) et non en 1(arbre)
-//	showtab(&*mlx);
+	//	obsy(&*mlx);//mets les obstacles en 2(buche) et non en 1(arbre)
+	//	showtab(&*mlx);
 	bear_me(&*mlx);
-//	printf("ajouter la vérif de la carte ici: -->\n");
+	//	printf("ajouter la vérif de la carte ici: -->\n");
 	return;//renvoie le tableau de la map
 }
 
@@ -246,29 +246,29 @@ void	move_char_left(t_mlx *mlx)//Bleu A
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
-//		showtab(&*mlx);
+		//		showtab(&*mlx);
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-	mlx->count++;//compte les mouvements
-	ft_putnbr(mlx->count);//afficher count
-	ft_putchar('\n');
+		mlx->count++;//compte les mouvements
+		ft_putnbr(mlx->count);//afficher count
+		ft_putchar('\n');
 
 	}
 
-/*	if (mlx->ber[mlx->cot_y][mlx->cot_x - 1] >= 3)// si c'est pas un arbre il avanc
-	{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
+	/*	if (mlx->ber[mlx->cot_y][mlx->cot_x - 1] >= 3)// si c'est pas un arbre il avanc
+		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
 		mlx->ber[mlx->cot_y][mlx->cot_x - 1] = 80;//vide?
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
 
 		showtab(&*mlx);
 		printf("je rentre dans move aaaaaaa\n");
-		//	mlx->y--;//position de cot depuis mercotte
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		//	my_mlx_pixy_put(&*mlx, mlx->x, mlx->y, color);
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
+	//	mlx->y--;//position de cot depuis mercotte
+	mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
+	mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
+	//	my_mlx_pixy_put(&*mlx, mlx->x, mlx->y, color);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	}
 	return (0);*/
 }
@@ -292,29 +292,29 @@ void	move_char_right(t_mlx *mlx)//fushia D
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
-//		showtab(&*mlx);
+		//		showtab(&*mlx);
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
 		mlx->count++;//compte les mouvements
-	ft_putnbr(mlx->count);//afficher count
-	ft_putchar('\n');
+		ft_putnbr(mlx->count);//afficher count
+		ft_putchar('\n');
 
-}
+	}
 
-/*	if (mlx->ber[mlx->cot_y][mlx->cot_x + 1] >= 3)// si c'est pas un arbre il avance
-	{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
+	/*	if (mlx->ber[mlx->cot_y][mlx->cot_x + 1] >= 3)// si c'est pas un arbre il avance
+		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
 		mlx->ber[mlx->cot_y][mlx->cot_x + 1] = 80;//vide?
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
 
 		showtab(&*mlx);
 		printf("je rentre dans move dddddddd\n");
-		//	mlx->y--;//position de cot depuis mercotte
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		//	my_mlx_pixy_put(&*mlx, mlx->x, mlx->y, color);
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
+	//	mlx->y--;//position de cot depuis mercotte
+	mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
+	mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
+	//	my_mlx_pixy_put(&*mlx, mlx->x, mlx->y, color);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	}
 	return (0);*/
 }
@@ -338,15 +338,15 @@ void	move_char_bot(t_mlx *mlx)//bot S aqua
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
-//		showtab(&*mlx);
+		//		showtab(&*mlx);
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
 		mlx->count++;//compte les mouvements
-	ft_putnbr(mlx->count);//afficher count
-	ft_putchar('\n');
+		ft_putnbr(mlx->count);//afficher count
+		ft_putchar('\n');
 
-}
+	}
 }
 
 void	move_char_top(t_mlx *mlx)//vert W lime
@@ -368,57 +368,57 @@ void	move_char_top(t_mlx *mlx)//vert W lime
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
-//		showtab(&*mlx);
+		//		showtab(&*mlx);
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-	mlx->count++;//compte les mouvements
-	ft_putnbr(mlx->count);//afficher count
-	ft_putchar('\n');
+		mlx->count++;//compte les mouvements
+		ft_putnbr(mlx->count);//afficher count
+		ft_putchar('\n');
 
 	}
 }
 
 /*void	mercotte(t_mlx *mlx)
-{
-	int	y;
-	int	x;
+  {
+  int	y;
+  int	x;
 
-	y = 0;
-	mlx->col = 0;
-	while (y < mlx->len_y)
-	{
-		x = 0;
-		while (x < mlx->len_x)
-		{
-		//	printf("passe dans mercotte\n");
-			if (mlx->ber[y][x] >= 80)
-			{
-				mlx->cot_x = x;
-				mlx->x = x;
-				mlx->y = y;
-				mlx->cot_y = y;
-			}
-			if (mlx->ber[y][x] == 67)
-			{
-				mlx->col++;
-			//	printf("COLLECTIBLE++\n");
-			}
-			x++;
-		}
-		y++;
-	}
+  y = 0;
+  mlx->col = 0;
+  while (y < mlx->len_y)
+  {
+  x = 0;
+  while (x < mlx->len_x)
+  {
+//	printf("passe dans mercotte\n");
+if (mlx->ber[y][x] >= 80)
+{
+mlx->cot_x = x;
+mlx->x = x;
+mlx->y = y;
+mlx->cot_y = y;
+}
+if (mlx->ber[y][x] == 67)
+{
+mlx->col++;
+//	printf("COLLECTIBLE++\n");
+}
+x++;
+}
+y++;
+}
 //	printf("mlx->cot_x %d, %d, collectibles = %d\n", mlx->cot_x, mlx->cot_y, mlx->col);
-	return;
+return;
 }*/
 
 int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 {
-//	printf("===================================================key pressed, %d\n", keycode);
+	//	printf("===================================================key pressed, %d\n", keycode);
 	mercotte(&*mlx);
 	if (keycode == ESC)//cette touche compte pour le décompte
 	{
-	//	printf("je me FERME, %d\n", keycode);
+		//	printf("je me FERME, %d\n", keycode);
 		close_it(&*mlx);
 		return (0);
 	}
@@ -432,21 +432,21 @@ int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 		move_char_right(&*mlx);
 	else
 		return (0);
-/*	mlx->count++;//compte les mouvements
-	ft_putnbr(mlx->count);//afficher count
-	ft_putchar('\n');*/
-//	printf("fin de keep\n");
+	/*	mlx->count++;//compte les mouvements
+		ft_putnbr(mlx->count);//afficher count
+		ft_putchar('\n');*/
+	//	printf("fin de keep\n");
 	//loopy_loop(&*mlx);
-/*int	x;
-x = 0;
-	if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
-	{
-		printf("entre pour close\n");
-		while (x < 50)
-			x++;
-		close_it(&*mlx);
-	}*/
-//	printf("sortie de key pressed coll = %d\n", mlx->col);
+	/*int	x;
+	  x = 0;
+	  if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
+	  {
+	  printf("entre pour close\n");
+	  while (x < 50)
+	  x++;
+	  close_it(&*mlx);
+	  }*/
+	//	printf("sortie de key pressed coll = %d\n", mlx->col);
 	return (0);
 }
 
@@ -545,9 +545,9 @@ void	sprint_map(t_mlx *mlx)
 		}
 		mlx->y = mlx->y + (mlx->img_height - 1);
 		y++;
-	//	printf("y = %d, %d\n", y, mlx->lar);
+		//	printf("y = %d, %d\n", y, mlx->lar);
 	}
-//	printf("fin d'affichage de la map\n");
+	//	printf("fin d'affichage de la map\n");
 	return;
 }
 
@@ -577,21 +577,21 @@ void	loopy_loop(t_mlx *mlx)
 	x = 0;
 	mercotte(&*mlx);
 	printf("entre dans looooppy loooop\n");
-//	cot(&*mlx, mlx->cot_y, mlx->cot_x);
+	//	cot(&*mlx, mlx->cot_y, mlx->cot_x);
 	if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
 	{
 		while (x < 50)
 			x++;
 		close_it(&*mlx);
 	}
-	
+
 
 	mlx_hook(mlx->win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage
 
 	mlx_loop(mlx->mlx);
 
 	mlx_loop_end(mlx->mlx);
-return;
+	return;
 }
 
 
@@ -599,9 +599,9 @@ int	err(char *str, int x)
 {
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
-//	free(mlx->ber);
-//	mlx_destroy_window(mlx->mlx, mlx->win);
-//	mlx->close = 1;
+	//	free(mlx->ber);
+	//	mlx_destroy_window(mlx->mlx, mlx->win);
+	//	mlx->close = 1;
 
 	return (x);
 }
@@ -610,13 +610,13 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 {
 	t_mlx	mlx;
 
-//	(void)av;
+	//	(void)av;
 	mlx_struct_init(&mlx);
 	if (ac != 2)
 		return (err("Error:\n Trop d'arguments.", -1));//Error : too many arguments or too low wrong number of args
 	check_the_bear(av[1], &mlx);//vérifier que le fichier soit un .ber
-//	mlx.lon = 50 * mlx.len_x;//50 = taille des images en pixels
-//	mlx.lar = 50 * mlx.len_y;
+	//	mlx.lon = 50 * mlx.len_x;//50 = taille des images en pixels
+	//	mlx.lar = 50 * mlx.len_y;
 	if (mlx.close == 1)
 		return (-1);
 	obsy(&mlx);//mets les obstacles en 2(buche) et non en 1(arbre)
@@ -626,8 +626,8 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//ouvrir un fichier .ber
 	//parser le fichier 0(vide) 1(mur) C(collectible minimum 1) E(exit x1) P(personnage x1), cart encadrée de murs
 	//carte rectangulaire
-//	printf("début main\n");
-//	(void)av;
+	//	printf("début main\n");
+	//	(void)av;
 	mlx.mlx = mlx_init();// return Xvar
 	mlx.win = mlx_new_window(mlx.mlx, mlx.lon, mlx.lar, "so_long");//size en pixels
 	sprint_map(&mlx);
@@ -677,7 +677,7 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//while on recoit des infos de touche renvoyer vers un dispatch
 	//	while (mlx.close != 1)//init structure
 	//	{
-//	printf("passe\n");	
+	//	printf("passe\n");	
 	mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage
 
 	//	while (mlx.close == 0)
@@ -685,13 +685,13 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//	mlx_loop_hook(mlx.mlx, mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx), &mlx);
 	//	void	*YourStruct;
 
-//	mlx_loop_hook(mlx.mlx, loopy_loop, &mlx);
+	//	mlx_loop_hook(mlx.mlx, loopy_loop, &mlx);
 	//	mlx_mouse_hook(mlx.win, mouse_hook, &mlx);//lier le clic de croix ici (mouse code de mac pour clic left = 1)
 	//	mlx_hook(mlx.win, 2, 1L<<0, close_it, &mlx);//fermeture fenetre
 	//}
-//	printf("icic.??\n");
+	//	printf("icic.??\n");
 	//	mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage}
-//	printf("apres hook\n");	
+	//	printf("apres hook\n");	
 	//}
 	mlx_loop(mlx.mlx);
 	//	}
