@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx.h"
+# include "./../minilibx-linux/mlx.h"
 
 # include "struct.h"
 # include "def.h"
@@ -31,7 +31,7 @@ void		ft_putchar(char c);
 void		ft_putnbr(int n);
 void	sprint_map(t_mlx *mlx);
 void		showtab(t_mlx *mlx);
-int		create_tab(char *line, t_mlx *mlx, int y);
+int		**create_tab(char *line, t_mlx *mlx, int y);
 typedef struct		s_long
 {
 		int	error_map_ber;

@@ -1,7 +1,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 
 MLX_LINUX = ./minilibx-linux/
@@ -43,11 +43,11 @@ all:	$(NAME)
 
 $(NAME) : $(OBJS) $(MLX_IS)libmlx.a
 	@make -C $(MLX_LINUX)
-	@$(CC) $(CFLAGS)$(CINCLUDES) $(OBJS) $(MLX_OS) -o $(NAME)
+	@$(CC) $(CFLAGS) -I $(INCLUDES) $(OBJS) $(MLX_OS) -o $(NAME)
 
 -include $(OBJS_D)
 .c.o:
-			@$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $(<:.c=.o)
+			@$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $(<:.c=.o)
 
 $(MLX_IS)libmlx.a :
 	@make -C $(MLX_IS) all

@@ -109,7 +109,7 @@ int	copy_tab(int **tab, t_mlx *mlx, char *line)
 	return (1);
 }
 
-int	create_tab(char	*line, t_mlx *mlx, int y)
+int	**create_tab(char	*line, t_mlx *mlx, int y)
 {
 //	int	x;
 	int	z;
@@ -127,20 +127,21 @@ int	create_tab(char	*line, t_mlx *mlx, int y)
 	{	
 	printf("passedans len_x %d, len =%d, '%s'\n", mlx->len_x, mlx->len, line);
 		mlx->err_len = -1;
-		return (-1);
+		return (NULL);
 	}
 	tab = (int **)malloc(sizeof(int *) * (mlx->len_y + 1));
 	if (!tab)
-		return (0);
+		return (NULL);
 	while (z <= mlx->len_y)
 	{
 		tab[z] = (int *)malloc(sizeof(int) * (mlx->len_x + 1));
 		if (!tab)
-			return (0);
+			return (NULL);
 		z++;
 	}
 //	printf("go dans copy%d\n", mlx->len_x);
 	copy_tab(tab, &*mlx, line);
+	//free(tab);
 //	printf("%d BER \n", mlx->ber[0][0]);
-	return (1);
+	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:08:49 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/24 21:11:50 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/24 21:54:53 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_read_suite(int fd, int n, char *strr, int *rid)
 	if (*rid < 0)
 		return (NULL);
 	buf[*rid] = '\0';
-	stock = (char *)malloc(sizeof(char) * (n + BUFFER_SIZE + 1))
+	stock = (char *)malloc(sizeof(char) * (n + BUFFER_SIZE + 1));
 		if (!stock)
 			return (NULL);
 	x = 0;
@@ -82,7 +82,7 @@ int	get_next_line(int fd, char **line)
 
 	if (!str[fd])
 	{
-		str[fd] = (char *)malloc(sizeof(char) * 1)
+		str[fd] = (char *)malloc(sizeof(char) * 1);
 			if (!str[fd])
 				return (-1);
 		str[fd][0] = '\0';

@@ -57,8 +57,8 @@ void	mercotte(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->len_x)
 		{
-			//	printf("passe dans mercotte\n");
-			if (mlx->ber[y][x] >= 80)
+				printf("passe dans mercotte %d\n", mlx->ber[y][x]);
+		if (mlx->ber[y][x] >= 80)
 			{
 				mlx->cot_x = x;
 				mlx->x = x;
@@ -117,8 +117,8 @@ void	mur_test(t_mlx *mlx)
 	while (x < mlx->len_y && mlx->err_mur == 0)
 	{
 
-		printf("%d, %d\n", mlx->ber[x][0], mlx->err_mur);
-		if (mlx->ber[x][0] != 1 || mlx->ber[x][mlx->len_x] != 1)
+		//printf("%d, %d\n", mlx->ber[x][0], mlx->err_mur);
+		if (mlx->ber[x][0] != 1 || mlx->ber[x][mlx->len_x - 1] != 1)
 			mlx->err_mur = -1;
 		x++;
 
@@ -132,7 +132,8 @@ int	err_cl(t_mlx *mlx, char *str)
 	write(2, "Error:\n ", 9);
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
-	free(mlx->ber);
+	if (mlx->err_tab == NULL)
+		free(mlx->ber);
 	//	mlx_destroy_window(mlx->mlx, mlx->win);
 	//	free(mlx->mur);
 	//	free(mlx->cot);
@@ -152,10 +153,11 @@ void	bear_me(t_mlx *mlx)
 	mur_test(&*mlx);
 
 	printf("%d\n", mlx->err_mur);
-	if (mlx->err_tab == -1)
+	//gerer erreur de tab**
+	if (mlx->err_tab == NULL)
 		err_cl(&*mlx, "Une des lignes de la map n'est pas de la bonne taille.");
-	else if (mlx->err_mur == -1)
-		err_cl(&*mlx, "Problème dans les murs de la map.");
+//else if (mlx->err_mur == -1)
+//		err_cl(&*mlx, "Problème dans les murs de la map.");
 	else if (mlx->err_cot == 0)
 		err_cl(&*mlx, "Pas de joueur sur la map.");
 	else if (mlx->err_col == 0)
@@ -177,11 +179,7 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 	int	x;
 
 	x = 0;
-	//	mlx->gnl = 1;
 	y = 0;
-	//	mlx->len = -1;
-	//	mlx->P_x = -1;
-	//	mlx->E_x = - 1;
 	while (nom_map[x] != '\0')
 		x++;
 	if (nom_map[x - 4] == '.' && nom_map[x - 3] == 'b' && nom_map[x - 2] == 'e' && nom_map[x - 1] == 'r')
@@ -193,14 +191,11 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 			err_cl(&*mlx, "N'a pas pu lire le fichier .");//Error : failed reading the file
 			return;
 		}
-		while (mlx->gnl == 1 && mlx->err_tab != -1)
+		while (mlx->gnl == 1 && mlx->err_tab != NULL)
 		{
 			mlx->gnl = get_next_line(mlx->fd , &line);
-			//	printf("%d\n", line);
-			if (mlx->gnl == 1)
-				mlx->err_tab = create_tab(line, &*mlx, y);
+					mlx->err_tab = create_tab(line, &*mlx, y);
 			y++;
-			//	printf("BER ===== %d\n", mlx->ber[0][0]);
 		}
 	}
 	else
@@ -210,20 +205,18 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 		return;
 	}
 	mlx->len_x = mlx->len;
-	//	obsy(&*mlx);//mets les obstacles en 2(buche) et non en 1(arbre)
-	//	showtab(&*mlx);
+	showtab(&*mlx);
 	bear_me(&*mlx);
-	//	printf("ajouter la vérif de la carte ici: -->\n");
 	return;//renvoie le tableau de la map
 }
 
-void	my_mlx_pixy_put(t_mlx *mlx, int x, int y, int color)
+/*void	my_mlx_pixy_put(t_mlx *mlx, int x, int y, int color)
 {
 	mlx->dst = mlx->addr + mlx->offset;
 	*(unsigned int*)mlx->dst = color;
 
 }
-
+*/
 
 void	move_char_left(t_mlx *mlx)//Bleu A
 {
@@ -570,28 +563,40 @@ void	mlx_struct_init(t_mlx *mlx)
 	return;
 }
 
-void	loopy_loop(t_mlx *mlx)
+int	loopy_loop(t_mlx *mlx)
 {
 	int	x;
 
 	x = 0;
-	mercotte(&*mlx);
+//	mercotte(&*mlx);
 	printf("entre dans looooppy loooop\n");
 	//	cot(&*mlx, mlx->cot_y, mlx->cot_x);
-	if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
-	{
-		while (x < 50)
-			x++;
-		close_it(&*mlx);
-	}
+//	while (mlx->close != 1)//1 = fini
+//	{
 
-
-	mlx_hook(mlx->win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage
-
-	mlx_loop(mlx->mlx);
-
-	mlx_loop_end(mlx->mlx);
-	return;
+	/*	if (mlx->ber[mlx->y][mlx->x] == 81 && mlx->col == 0)
+		{
+			while (x < 50)
+				x++;
+			close_it(&*mlx);
+		}*/
+/*		mercotte(&*mlx);
+		mlx_hook(mlx->win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage
+		//plus dappui voir les masks
+		mlx_loop(mlx->mlx);
+*/
+	//	mlx_loop_end(mlx->mlx);
+//	printf("Test : %d\n", mlx->ber[mlx->y][mlx->x]);
+	if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81 && mlx->col == 0)
+		{
+			while (x < 50)
+				x++;
+			close_it(&*mlx);
+		//	exit(0);
+			mlx_loop_end(mlx->mlx);
+			return (-1);
+		}
+	return (0);
 }
 
 
@@ -626,13 +631,13 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//ouvrir un fichier .ber
 	//parser le fichier 0(vide) 1(mur) C(collectible minimum 1) E(exit x1) P(personnage x1), cart encadrée de murs
 	//carte rectangulaire
-	//	printf("début main\n");
+	printf("début main\n");
 	//	(void)av;
 	mlx.mlx = mlx_init();// return Xvar
 	mlx.win = mlx_new_window(mlx.mlx, mlx.lon, mlx.lar, "so_long");//size en pixels
 	sprint_map(&mlx);
 	printf("MAP imprimée\n");
-	loopy_loop(&mlx);
+//	loopy_loop(&mlx);
 	//	char	*relative_path;
 	//	relative_path = "./images/cot50.xpm";
 	//	relative_path = (char *)malloc(sizeof(char) * (20 + 1));
@@ -685,7 +690,7 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//	mlx_loop_hook(mlx.mlx, mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx), &mlx);
 	//	void	*YourStruct;
 
-	//	mlx_loop_hook(mlx.mlx, loopy_loop, &mlx);
+	mlx_loop_hook(mlx.mlx, loopy_loop, &mlx);
 	//	mlx_mouse_hook(mlx.win, mouse_hook, &mlx);//lier le clic de croix ici (mouse code de mac pour clic left = 1)
 	//	mlx_hook(mlx.win, 2, 1L<<0, close_it, &mlx);//fermeture fenetre
 	//}
@@ -693,11 +698,22 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//	mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage}
 	//	printf("apres hook\n");	
 	//}
+//	mlx_loop(mlx.mlx);
+/*	int	x;
+	x = 0;
+	if (mlx.ber[mlx.y][mlx.x] == 81 && mlx.col == 0)
+		{
+			while (x < 50)
+				x++;
+			close_it(&mlx);
+			exit(0);
+		}*/
+
 	mlx_loop(mlx.mlx);
 	//	}
 	//xvar->end_loop = condition de fin de boucle?
 	//lier le X rouge à end_loop!
 	//	printf("window open?, %p, \n", mlx.img);
-	mlx_loop_end(mlx.mlx);
+//	mlx_loop_end(mlx.mlx);
 	return (0);//?
 	}
