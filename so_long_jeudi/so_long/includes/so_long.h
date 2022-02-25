@@ -17,6 +17,15 @@
 #  define BUFFER_SIZE 1
 # endif
 
+
+
+void	move_char_left(t_mlx *mlx, int x, int y);
+void	move_char_right(t_mlx *mlx, int x, int y);
+void	move_char_bot(t_mlx *mlx, int x, int y);
+void	move_char_top(t_mlx *mlx, int x, int y);
+
+int	err(char *str, int x);
+
 int		ft_strlen(char *str);
 void		mercotte(t_mlx *mlx);
 void		cot(t_mlx *mlx, int y, int x);

@@ -212,11 +212,11 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 		return;
 	}
 	mlx->len_x = mlx->len;
-	showtab(&*mlx);
+//	showtab(&*mlx);
 	bear_me(&*mlx);
 	return;
 }
-
+/*
 void	move_char_left(t_mlx *mlx)//Bleu A
 {
 
@@ -337,7 +337,7 @@ void	move_char_top(t_mlx *mlx)//vert W lime
 
 	}
 }
-
+*/
 int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 {
 	//	printf("===================================================key pressed, %d\n", keycode);
@@ -349,13 +349,13 @@ int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 		return (0);
 	}
 	else if (keycode == A)
-		move_char_left(&*mlx);
+		move_char_left(&*mlx, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	else if (keycode == W)
-		move_char_top(&*mlx);
+		move_char_top(&*mlx, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	else if (keycode == S)
-		move_char_bot(&*mlx);
+		move_char_bot(&*mlx, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	else if (keycode == D)
-		move_char_right(&*mlx);
+		move_char_right(&*mlx, 50 * mlx->cot_x, 50 * mlx->cot_y);
 	else
 		return (0);
 	return (0);
@@ -518,7 +518,7 @@ void	mlx_struct_init(t_mlx *mlx)
 int	loopy_loop(t_mlx *mlx)
 {
 //	mercotte(&*mlx);
-	printf("entre dans looooppy loooop\n");
+//	printf("entre dans looooppy loooop\n");
 	if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81 && mlx->col == 0)
 		{
 			
@@ -533,7 +533,7 @@ int	loopy_loop(t_mlx *mlx)
 }
 
 
-int	err(char *str, int x)
+/*int	err(char *str, int x)
 {
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
@@ -542,7 +542,7 @@ int	err(char *str, int x)
 	//	mlx->close = 1;
 
 	return (x);
-}
+}*/
 
 int	main(int ac, char **av)// pas de png utiliser xpm
 {
@@ -550,7 +550,7 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 
 	mlx_struct_init(&mlx);
 	if (ac != 2)
-		return (err("Error:\n Trop d'arguments.", -1));//Error : too many arguments or too low wrong number of args
+		return (err("Error:\n Doit recevoir 2 arguments uniquement", -1));//Error : too many arguments or too low wrong number of args
 	check_the_bear(av[1], &mlx);//vérifier que le fichier soit un .ber
 	if (mlx.close == 1)
 		return (-1);
@@ -560,7 +560,7 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//ouvrir un fichier .ber
 	//parser le fichier 0(vide) 1(mur) C(collectible minimum 1) E(exit x1) P(personnage x1), cart encadrée de murs
 	//carte rectangulaire
-	printf("début main\n");
+//	printf("début main\n");
 	mlx.mlx = mlx_init();// return Xvar
 	mlx.win = mlx_new_window(mlx.mlx, mlx.lon, mlx.lar, "so_long");//size en pixels
 	sprint_map(&mlx);

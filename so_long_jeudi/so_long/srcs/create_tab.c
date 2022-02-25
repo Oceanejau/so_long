@@ -1,7 +1,7 @@
 #include "so_long.h"
 
 
-void	showtab(t_mlx *mlx)
+/*void	showtab(t_mlx *mlx)
 {
 	int y;
 	int x;
@@ -20,9 +20,7 @@ void	showtab(t_mlx *mlx)
     }
 	printf("=========== fin du TAB \n");
 	return ;
-}
-
-
+}*/
 
 int			ft_strlen(char *str)
 {
@@ -81,7 +79,7 @@ int	line_to_tab(int **tab, t_mlx *mlx, char *line)
 	return (1);
 }
 
-int	copy_tab(int **tab, t_mlx *mlx, char *line)
+void	copy_tab(int **tab, t_mlx *mlx, char *line)
 {
 	int	x;
 	int	y;
@@ -106,7 +104,21 @@ int	copy_tab(int **tab, t_mlx *mlx, char *line)
 	mlx->error_map_ber = line_to_tab(tab, &*mlx, line);
 //	printf("ber suite = %d\n", mlx->ber[0][0]);
 //	showtab(&*mlx);
-	return (mlx->error_map_ber);
+	return;
+}
+
+int	free_tab(int **tab, int	y, int ret)
+{
+	int	z;
+
+	z = 0;
+	while (z < y)
+	{
+		free(tab[z]);
+		z++;
+	}
+	free(tab);
+	return (ret);
 }
 
 int	create_tab(char	*line, t_mlx *mlx, int y)
@@ -115,40 +127,35 @@ int	create_tab(char	*line, t_mlx *mlx, int y)
 	int	z;
 	int	**tab;
 
-	printf("entre dans create tab\n");
+//	printf("entre dans create tab\n");
+	tab = NULL;
 	z = 0;
 	mlx->len_x = ft_strlen(line);
 	mlx->len_y = y;
-//	mlx->len_x = x;
 	if (mlx->len == -1)
 		mlx->len = mlx->len_x;
 //	printf("len = %d &  len_x = %d\n", mlx->len, mlx->len_x);
 	if (mlx->gnl == 0)
-		return(0);
+		return(free_tab(tab, y, 0));
 	if (mlx->len_x != mlx->len)
 	{	
-	printf("passedans len_x %d, len =%d, '%s'\n", mlx->len_x, mlx->len, line);
+//	printf("passedans len_x %d, len =%d, '%s'\n", mlx->len_x, mlx->len, line);
 		mlx->err_len = -1;
-		return (-1);
+		return (free_tab(tab, y, -1));
 	}
-/*	if (mlx->gnl == 0)
-		return (0);*/
 	tab = (int **)malloc(sizeof(int *) * (mlx->len_y + 1));
 	if (!tab)
-		return (-1);
+		return (free_tab(tab, y, -1));
 	while (z <= mlx->len_y)
 	{
-		printf("passe dans le malloc\n");
+	//	printf("passe dans le malloc\n");
 		tab[z] = (int *)malloc(sizeof(int) * (mlx->len_x + 1));
-		if (!tab)
-			return (-1);
+		if (!tab[z])
+			return (free_tab(tab, y, -1));
 		z++;
 	}
-	printf("go dans copy%d\n", mlx->len_x);
-	mlx->error_map_ber = copy_tab(tab, &*mlx, line);
-//	free(tab);
-//	if (mlx->gnl == 0)
-//		free(tab);//	tab = NULL;
-	printf("%d BER \n", mlx->ber[0][0]);
+//	printf("go dans copy%d\n", mlx->len_x);
+	copy_tab(tab, &*mlx, line);
+//	printf("%d BER \n", mlx->ber[0][0]);
 	return (0);
 }

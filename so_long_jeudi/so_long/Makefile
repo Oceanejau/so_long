@@ -1,7 +1,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g3#-fsanitize=address -g3
 
 
 MLX_LINUX = ./minilibx-linux/
@@ -16,7 +16,9 @@ SRCS = srcs/main.c\
 	srcs/trgb.c\
 	srcs/ft_putnbr.c\
 	srcs/ft_putchar.c\
-	srcs/create_tab.c
+	srcs/create_tab.c\
+	srcs/move_it.c\
+	srcs/ft_error.c
 
 
 OS_NAME = $(shell uname -s)
