@@ -11,6 +11,7 @@ typedef struct s_mlx {
 		int	error_map_ber;
 		int	err_tab;
 		int	fd;
+		int	err_img;
 		int	err_mur;
 		int	err_cot;
 		int	err_nid;
@@ -18,6 +19,7 @@ typedef struct s_mlx {
 		
 
 	/* -- MAP -- */
+		char	*path;
 		int	**ber;//map
 	//	int	size;//size de la map
 		int	len;
@@ -46,7 +48,6 @@ typedef struct s_mlx {
 		void	*obs;//buche50
 		void	*cot;//cot50
 		void	*sun;//sun50
-		void	*gold;//la poule en doré 50 ici
 		void	*nid;//exit50
 		int	si_x;//size image x
 		int	si_y;//size image y

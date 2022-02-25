@@ -2,8 +2,17 @@
 
 int	close_it(t_mlx *mlx)
 {
-	mlx_destroy_window(mlx->mlx, mlx->win);
+//	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx->close = 1;
+//	free(mlx->path);
+	free(mlx->cot);
+	free(mlx->mur);
+	free(mlx->sol);
+	free(mlx->obs);
+	free(mlx->nid);
+	free(mlx->sun);
+	free(mlx->ber);
+	mlx_destroy_window(mlx->mlx, mlx->win);
 	return (0);
 }
 
@@ -53,6 +62,8 @@ void	mercotte(t_mlx *mlx)
 		}
 		y++;
 	}
+	if (mlx->col == 0)
+		mlx->path = "./images/50/";
 	//	printf("mlx->cot_x %d, %d, collectibles = %d\n", mlx->cot_x, mlx->cot_y, mlx->col);
 	return;
 }
@@ -161,6 +172,8 @@ void	bear_me(t_mlx *mlx)
 		err_cl(&*mlx, "Pas de sorties sur la map.");
 	else if (mlx->err_nid > 1)
 		err_cl(&*mlx, "Trop de sorties sur la map.");
+	else if (mlx->err_img == -1)
+		err_cl(&*mlx, "");
 //	printf("%d\n", mlx->err_nid);
 	return;
 }
@@ -348,9 +361,31 @@ int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 	return (0);
 }
 
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = -1;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(str = (char *)malloc(sizeof(char) *
+		(ft_strlen(s1) + ft_strlen(s2) + 1))))
+		return (NULL);
+	while (s1[++i] != '\0')
+		str[i] = s1[i];
+	while (s2[j] != '\0')
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	printf("strjoin = '%s'\n", str);
+	return (str);
+}
 void	vide(t_mlx *mlx, int y, int x)
 {
-	mlx->sol = "./images/50/grass50.xpm";
+	mlx->sol = "grass50.xpm";
+	mlx->sol = ft_strjoin(mlx->path, mlx->sol);
 	mlx->sol = mlx_xpm_file_to_image(mlx->mlx, mlx->sol, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->sol, (x + mlx->x), (y + mlx->y));
 	return;
@@ -358,7 +393,8 @@ void	vide(t_mlx *mlx, int y, int x)
 
 void	mur(t_mlx *mlx, int y, int x)
 {
-	mlx->mur = "./images/50/tree50.xpm";
+	mlx->mur = "tree50.xpm";
+	mlx->mur = ft_strjoin(mlx->path, mlx->mur);
 	mlx->mur = mlx_xpm_file_to_image(mlx->mlx, mlx->mur, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->mur, (x + mlx->x), (y + mlx->y));
 	return;
@@ -366,7 +402,8 @@ void	mur(t_mlx *mlx, int y, int x)
 
 void	obs(t_mlx *mlx, int y, int x)
 {
-	mlx->obs = "./images/50/buche50.xpm";
+	mlx->obs = "buche50.xpm";
+	mlx->obs = ft_strjoin(mlx->path, mlx->obs);
 	mlx->obs = mlx_xpm_file_to_image(mlx->mlx, mlx->obs, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->obs, (x + mlx->x), (y + mlx->y));
 	return;
@@ -374,7 +411,7 @@ void	obs(t_mlx *mlx, int y, int x)
 
 void	collect(t_mlx *mlx, int y, int x)
 {
-	mlx->sun = "./images/50/sun50.xpm";
+	mlx->sun = "./images/cold/sun50.xpm";
 	mlx->sun = mlx_xpm_file_to_image(mlx->mlx, mlx->sun, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->sun, (x + mlx->x), (y + mlx->y));
 	return;
@@ -383,7 +420,8 @@ void	collect(t_mlx *mlx, int y, int x)
 
 void	cot(t_mlx *mlx, int y, int x)
 {
-	mlx->cot = "./images/50/cot50.xpm";
+	mlx->cot = "cot50.xpm";
+	mlx->cot = ft_strjoin(mlx->path, mlx->cot);
 	mlx->cot_y = y;
 	mlx->cot_x = x;
 	mlx->cot = mlx_xpm_file_to_image(mlx->mlx, mlx->cot, &mlx->img_width, &mlx->img_height);
@@ -393,7 +431,8 @@ void	cot(t_mlx *mlx, int y, int x)
 
 void	cot_fin(t_mlx *mlx, int y, int x)
 {
-	mlx->cot = "./images/50/nid_cot50.xpm";
+	mlx->cot = "nid_cot50.xpm";
+	mlx->cot = ft_strjoin(mlx->path, mlx->cot);
 	mlx->cot_y = y;
 	mlx->cot_x = x;
 	mlx->cot = mlx_xpm_file_to_image(mlx->mlx, mlx->cot, &mlx->img_width, &mlx->img_height);
@@ -403,7 +442,9 @@ void	cot_fin(t_mlx *mlx, int y, int x)
 
 void	exi(t_mlx *mlx, int y, int x)
 {
-	mlx->nid = "./images/50/nid50.xpm";
+	
+	mlx->nid = "nid50.xpm";
+	mlx->nid = ft_strjoin(mlx->path, mlx->nid);
 	mlx->nid = mlx_xpm_file_to_image(mlx->mlx, mlx->nid, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->nid, (x + mlx->x), (y + mlx->y));
 	return;
@@ -416,8 +457,11 @@ void	sprint_map(t_mlx *mlx)
 	x = 0;
 	y = 0;
 	mlx->y = 0;
-	if (mlx->mur == NULL || mlx->sol == NULL || mlx->obs == NULL || mlx->cot == NULL || mlx->sun == NULL)
-		printf("i----------------------raté\n");
+	if (mlx->count > 1 && (mlx->mur == NULL || mlx->sol == NULL || mlx->obs == NULL || mlx->cot == NULL || mlx->sun == NULL))
+	{
+		mlx->err_img = -1;
+		err_cl(&*mlx, "Ne parvient pas à récupérer les images.");
+	}
 	while (y < mlx->len_y)
 	{
 		mlx->x = 0;
@@ -464,25 +508,26 @@ void	mlx_struct_init(t_mlx *mlx)
 	mlx->E_x = -1;
 	mlx->y = 0;
 	mlx->x = 0;
-
+	mlx->err_img = 0;
+//	printf("testnte\n");
+	mlx->path = "./images/cold/";
+//	printf("tente\n");
 	return;
 }
 
 int	loopy_loop(t_mlx *mlx)
 {
-	int	x;
-
-	x = 0;
 //	mercotte(&*mlx);
 	printf("entre dans looooppy loooop\n");
 	if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81 && mlx->col == 0)
 		{
-			while (x < 50)
-				x++;
+			
 			close_it(&*mlx);
 		//	exit(0);
-			mlx_loop_end(mlx->mlx);
-			return (-1);
+		//	mlx_loop_end(mlx->mlx);
+
+		//	exit(0);
+			return (-1);//wtf c'est un win
 		}
 	return (0);
 }
@@ -522,5 +567,8 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	printf("MAP imprimée\n");
 	mlx_hook(mlx.win, 2, 1L<<0, keep_rest, &mlx);//deplace le personnage
 	mlx_loop_hook(mlx.mlx, loopy_loop, &mlx);
+	mlx_hook(mlx.win, 33, 1L<<17, close_it, &mlx);
+	mlx_loop(mlx.mlx);
+	mlx_loop_end(mlx.mlx);
 	return (0);//?
 	}
