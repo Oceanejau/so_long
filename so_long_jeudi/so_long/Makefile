@@ -1,7 +1,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3#-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 
 
 MLX_LINUX = ./minilibx-linux/

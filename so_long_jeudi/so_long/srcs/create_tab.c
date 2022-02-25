@@ -151,7 +151,7 @@ int	create_tab(char	*line, t_mlx *mlx, int y)
 	}
 	tab = (int **)malloc(sizeof(int *) * (mlx->len_y + 1));
 	if (!tab)
-		return (free_tab(tab, y, -1));
+		return (-1);
 	while (z <= mlx->len_y)
 	{
 	//	printf("passe dans le malloc\n");
