@@ -71,6 +71,8 @@ int	line_to_tab(int **tab, t_mlx *mlx, char *line)
 		x++;
 	//	printf("%d\n", x);
 	}
+	if (mlx->ber)
+		free_tab(mlx->ber, mlx->len_y, 0);
 	mlx->ber = tab;
 //	showtab(tab, &*mlx);
 //	printf("ber = \n");
@@ -104,6 +106,7 @@ void	copy_tab(int **tab, t_mlx *mlx, char *line)
 	mlx->error_map_ber = line_to_tab(tab, &*mlx, line);
 //	printf("ber suite = %d\n", mlx->ber[0][0]);
 //	showtab(&*mlx);
+//	free_tab(tab, mlx->len_y, 0);
 	return;
 }
 
@@ -112,12 +115,15 @@ int	free_tab(int **tab, int	y, int ret)
 	int	z;
 
 	z = 0;
-	while (z < y)
+	printf("va free all y = %d\n", y);
+	while (z < y && tab && tab[z])
 	{
 		free(tab[z]);
 		z++;
+		printf("tab free\n");
 	}
 	free(tab);
+	printf("tout est free\n");
 	return (ret);
 }
 

@@ -4,7 +4,7 @@ int	close_it(t_mlx *mlx)
 {
 //	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx->close = 1;
-//	free(mlx->path);
+	free(mlx->path);
 	free(mlx->cot);
 	free(mlx->mur);
 	free(mlx->sol);
@@ -201,7 +201,7 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 		{
 			mlx->gnl = get_next_line(mlx->fd , &line);
 			mlx->err_tab = create_tab(line, &*mlx, y);
-	//	printf("mlx->error_tab = %d, gnl = %d\n", mlx->err_tab, mlx->gnl);
+		printf("mlx->error_tab = %d, gnl = %d\n", mlx->err_tab, mlx->gnl);
 			y++;
 		}
 	}
@@ -212,132 +212,12 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 		return;
 	}
 	mlx->len_x = mlx->len;
+	printf("sort de bear\n");
 //	showtab(&*mlx);
 	bear_me(&*mlx);
 	return;
 }
-/*
-void	move_char_left(t_mlx *mlx)//Bleu A
-{
 
-	if (mlx->ber[mlx->cot_y][mlx->cot_x - 1] >= 3)
-	{
-		if (mlx->ber[mlx->cot_y][mlx->cot_x - 1] == 69)//nid
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x - 1] = 81;//nid+poule
-			printf("poule dans le nid A\n");
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81)
-		{	
-			mlx->ber[mlx->cot_y][mlx->cot_x] = 69;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x - 1] = 80;//vi
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x - 1] >= 3)// si c'est pas un arbre il avance
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x - 1] = 80;//vide?
-		}
-		mercotte(&*mlx);
-		sprint_map(&*mlx);
-		//		showtab(&*mlx);
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-		mlx->count++;//compte les mouvements
-		ft_putnbr(mlx->count);//afficher count
-		ft_putchar('\n');
-
-	}
-}
-
-void	move_char_right(t_mlx *mlx)//fushia D
-{
-	if (mlx->ber[mlx->cot_y][mlx->cot_x + 1] >= 3)
-	{
-		if (mlx->ber[mlx->cot_y][mlx->cot_x + 1] == 69)//nid
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x + 1] = 81;//nid+poule
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81)
-		{	
-			mlx->ber[mlx->cot_y][mlx->cot_x] = 69;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x + 1] = 80;//vi
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x + 1] >= 3)// si c'est pas un arbre il avance
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y][mlx->cot_x + 1] = 80;//vide?
-		}
-		mercotte(&*mlx);
-		sprint_map(&*mlx);
-		//		showtab(&*mlx);
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-		mlx->count++;//compte les mouvements
-		ft_putnbr(mlx->count);//afficher count
-		ft_putchar('\n');
-
-	}
-}
-
-void	move_char_bot(t_mlx *mlx)//bot S aqua
-{
-	if (mlx->ber[mlx->cot_y + 1][mlx->cot_x] >= 3)
-	{
-		if (mlx->ber[mlx->cot_y + 1][mlx->cot_x] == 69)//nid
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y + 1][mlx->cot_x] = 81;//nid+poule
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81)
-		{	
-			mlx->ber[mlx->cot_y][mlx->cot_x] = 69;//vide?
-			mlx->ber[mlx->cot_y + 1][mlx->cot_x] = 80;//vi
-		}
-		else if (mlx->ber[mlx->cot_y + 1][mlx->cot_x] >= 3)// si c'est pas un arbre il avance
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y + 1][mlx->cot_x] = 80;//vide?
-		}
-		mercotte(&*mlx);
-		sprint_map(&*mlx);
-		//		showtab(&*mlx);
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-		mlx->count++;//compte les mouvements
-		ft_putnbr(mlx->count);//afficher count
-		ft_putchar('\n');
-	}
-}
-
-void	move_char_top(t_mlx *mlx)//vert W lime
-{
-	if (mlx->ber[mlx->cot_y - 1][mlx->cot_x] >= 3)
-	{
-		if (mlx->ber[mlx->cot_y - 1][mlx->cot_x] == 69)//nid
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y - 1][mlx->cot_x] = 81;//nid+poule
-		}
-		else if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81)
-		{	
-			mlx->ber[mlx->cot_y][mlx->cot_x] = 69;//vide?
-			mlx->ber[mlx->cot_y - 1][mlx->cot_x] = 80;//vi
-		}
-		else if (mlx->ber[mlx->cot_y - 1][mlx->cot_x] >= 3)// si c'est pas un arbre il avance
-		{	mlx->ber[mlx->cot_y][mlx->cot_x] = 3;//vide?
-			mlx->ber[mlx->cot_y - 1][mlx->cot_x] = 80;//vide?
-		}
-		mercotte(&*mlx);
-		sprint_map(&*mlx);
-		//		showtab(&*mlx);
-		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
-		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, 50 * mlx->cot_x, 50 * mlx->cot_y);
-		mlx->count++;//compte les mouvements
-		ft_putnbr(mlx->count);//afficher count
-		ft_putchar('\n');
-
-	}
-}
-*/
 int	keep_rest(int keycode, t_mlx *mlx)// key pressed
 {
 	//	printf("===================================================key pressed, %d\n", keycode);
@@ -384,8 +264,12 @@ char	*ft_strjoin(char *s1, char *s2)
 }
 void	vide(t_mlx *mlx, int y, int x)
 {
+	char *tmp;
+
+	tmp = mlx->sol;
 	mlx->sol = "grass50.xpm";
 	mlx->sol = ft_strjoin(mlx->path, mlx->sol);
+	free(tmp);
 	mlx->sol = mlx_xpm_file_to_image(mlx->mlx, mlx->sol, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->sol, (x + mlx->x), (y + mlx->y));
 	return;
@@ -393,17 +277,25 @@ void	vide(t_mlx *mlx, int y, int x)
 
 void	mur(t_mlx *mlx, int y, int x)
 {
+	char *tmp;
+
+	tmp = mlx->mur;
 	mlx->mur = "tree50.xpm";
 	mlx->mur = ft_strjoin(mlx->path, mlx->mur);
+	free(tmp);
 	mlx->mur = mlx_xpm_file_to_image(mlx->mlx, mlx->mur, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->mur, (x + mlx->x), (y + mlx->y));
 	return;
 }
 
 void	obs(t_mlx *mlx, int y, int x)
-{
+{	
+	char *tmp;
+
+	tmp = mlx->obs;
 	mlx->obs = "buche50.xpm";
 	mlx->obs = ft_strjoin(mlx->path, mlx->obs);
+	free(tmp);
 	mlx->obs = mlx_xpm_file_to_image(mlx->mlx, mlx->obs, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->obs, (x + mlx->x), (y + mlx->y));
 	return;
@@ -420,8 +312,13 @@ void	collect(t_mlx *mlx, int y, int x)
 
 void	cot(t_mlx *mlx, int y, int x)
 {
+	char *tmp;
+
+	tmp = mlx->cot;
 	mlx->cot = "cot50.xpm";
-	mlx->cot = ft_strjoin(mlx->path, mlx->cot);
+	tmp = ft_strjoin(mlx->path, mlx->cot);
+	free(mlx->cot);
+	mlx->cot = tmp;
 	mlx->cot_y = y;
 	mlx->cot_x = x;
 	mlx->cot = mlx_xpm_file_to_image(mlx->mlx, mlx->cot, &mlx->img_width, &mlx->img_height);
@@ -431,8 +328,12 @@ void	cot(t_mlx *mlx, int y, int x)
 
 void	cot_fin(t_mlx *mlx, int y, int x)
 {
+	char *tmp;
+
+	tmp = mlx->cot;
 	mlx->cot = "nid_cot50.xpm";
 	mlx->cot = ft_strjoin(mlx->path, mlx->cot);
+	free(tmp);
 	mlx->cot_y = y;
 	mlx->cot_x = x;
 	mlx->cot = mlx_xpm_file_to_image(mlx->mlx, mlx->cot, &mlx->img_width, &mlx->img_height);
@@ -442,9 +343,12 @@ void	cot_fin(t_mlx *mlx, int y, int x)
 
 void	exi(t_mlx *mlx, int y, int x)
 {
-	
+	char *tmp;
+
+	tmp = mlx->nid;
 	mlx->nid = "nid50.xpm";
 	mlx->nid = ft_strjoin(mlx->path, mlx->nid);
+	free(tmp);
 	mlx->nid = mlx_xpm_file_to_image(mlx->mlx, mlx->nid, &mlx->img_width, &mlx->img_height);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->nid, (x + mlx->x), (y + mlx->y));
 	return;
@@ -511,6 +415,7 @@ void	mlx_struct_init(t_mlx *mlx)
 	mlx->err_img = 0;
 //	printf("testnte\n");
 	mlx->path = "./images/cold/";
+	mlx->ber = NULL;
 //	printf("tente\n");
 	return;
 }
@@ -532,18 +437,6 @@ int	loopy_loop(t_mlx *mlx)
 	return (0);
 }
 
-
-/*int	err(char *str, int x)
-{
-	write(2, str, ft_strlen(str));
-	ft_putchar('\n');
-	//	free(mlx->ber);
-	//	mlx_destroy_window(mlx->mlx, mlx->win);
-	//	mlx->close = 1;
-
-	return (x);
-}*/
-
 int	main(int ac, char **av)// pas de png utiliser xpm
 {
 	t_mlx	mlx;
@@ -560,7 +453,7 @@ int	main(int ac, char **av)// pas de png utiliser xpm
 	//ouvrir un fichier .ber
 	//parser le fichier 0(vide) 1(mur) C(collectible minimum 1) E(exit x1) P(personnage x1), cart encadrée de murs
 	//carte rectangulaire
-//	printf("début main\n");
+	printf("début main\n");
 	mlx.mlx = mlx_init();// return Xvar
 	mlx.win = mlx_new_window(mlx.mlx, mlx.lon, mlx.lar, "so_long");//size en pixels
 	sprint_map(&mlx);

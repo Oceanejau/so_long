@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:44:10 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/25 19:53:57 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/25 21:18:11 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -31,6 +31,8 @@ void	move_char_left(t_mlx *mlx, int x, int y)//Bleu A
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
+		x = 50 * mlx->cot_x;
+		y = 50 * mlx->cot_y;
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, x, y);
@@ -60,6 +62,9 @@ void	move_char_right(t_mlx *mlx, int x, int y)//fushia D
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
+		x = 50 * mlx->cot_x;
+		y = 50 * mlx->cot_y;
+
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, x, y);
@@ -89,6 +94,9 @@ void	move_char_bot(t_mlx *mlx, int x, int y)//bot S aqua
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
+		x = 50 * mlx->cot_x;
+		y = 50 * mlx->cot_y;
+
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, x, y);
@@ -117,6 +125,9 @@ void	move_char_top(t_mlx *mlx, int x, int y)//vert W lime
 		}
 		mercotte(&*mlx);
 		sprint_map(&*mlx);
+		x = 50 * mlx->cot_x;
+		y = 50 * mlx->cot_y;
+
 		mlx->addr = mlx_get_data_addr(mlx->sol, &mlx->bits_per_pixy, &mlx->line_length, &mlx->endian);//endian trie les bits
 		mlx->offset = (mlx->y * mlx->line_length + mlx->x * (mlx->bits_per_pixy / 8));
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->cot, x, y);
