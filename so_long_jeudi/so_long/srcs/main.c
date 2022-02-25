@@ -81,18 +81,24 @@ void	mapy(t_mlx *mlx)
 	int	y;
 
 	y = 0;
+	printf("len x =%d len y =%d\n", mlx->len_x, mlx->len_y);
 	while (y < mlx->len_y)
 	{
+	printf("passe\n");
 		x = 0;
 		while (x < mlx->len_x)
 		{
+printf("non\n");
+		printf("x = %d, y = %d\n", x, y);
 			if (mlx->ber[y][x] == 80)
 				mlx->err_cot++;
 			if (mlx->ber[y][x] == 67)
 				mlx->err_col++;//si on ne met pas mercotte avant
 			if (mlx->ber[y][x] == 69)
 				mlx->err_nid++;
+//printf("x = %d, y = %d", x, y);
 			x++;
+
 		}
 		y++;
 	}
@@ -132,8 +138,14 @@ int	err_cl(t_mlx *mlx, char *str)
 	write(2, "Error:\n ", 9);
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
-	if (mlx->err_tab == NULL)
-		free(mlx->ber);
+	if (mlx->err_tab == -1)
+	{	printf("je free ici\n");
+	//	while (mlx->len_y != 0)
+	//	{
+			free(mlx->ber/*[mlx->len_y]*/);
+	//		mlx->len_y--;
+	//	}
+	}
 	//	mlx_destroy_window(mlx->mlx, mlx->win);
 	//	free(mlx->mur);
 	//	free(mlx->cot);
@@ -152,9 +164,9 @@ void	bear_me(t_mlx *mlx)
 	mapy(&*mlx);
 	mur_test(&*mlx);
 
-	printf("%d\n", mlx->err_mur);
+	printf("%d\n", mlx->err_tab);
 	//gerer erreur de tab**
-	if (mlx->err_tab == NULL)
+/*	if (mlx->err_tab == -1)
 		err_cl(&*mlx, "Une des lignes de la map n'est pas de la bonne taille.");
 //else if (mlx->err_mur == -1)
 //		err_cl(&*mlx, "Problème dans les murs de la map.");
@@ -167,12 +179,12 @@ void	bear_me(t_mlx *mlx)
 	else if (mlx->err_nid == 0)
 		err_cl(&*mlx, "Pas de sorties sur la map.");
 	else if (mlx->err_nid > 1)
-		err_cl(&*mlx, "Trop de sorties sur la map.");
+		err_cl(&*mlx, "Trop de sorties sur la map.");*/
 	//	printf("%d\n", mlx->err_nid);
 	return;
 }
 
-void	check_the_bear(char *nom_map, t_mlx *mlx)
+void	check_the_bear(char *nom, t_mlx *mlx)
 {
 	char	*line;
 	int	y;
@@ -180,21 +192,23 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 
 	x = 0;
 	y = 0;
-	while (nom_map[x] != '\0')
+	while (nom[x] != '\0')
 		x++;
-	if (nom_map[x - 4] == '.' && nom_map[x - 3] == 'b' && nom_map[x - 2] == 'e' && nom_map[x - 1] == 'r')
+	if (nom[x - 4] == '.' && nom[x - 3] == 'b' && nom[x - 2] == 'e' && nom[x - 1] == 'r')
 	{
 		mlx->error_map_ber = 0;
-		mlx->fd = open(nom_map, O_RDONLY);
+		mlx->fd = open(nom, O_RDONLY);
 		if (mlx->fd == -1)
 		{
 			err_cl(&*mlx, "N'a pas pu lire le fichier .");//Error : failed reading the file
 			return;
 		}
-		while (mlx->gnl == 1 && mlx->err_tab != NULL)
+		while (mlx->gnl == 1/* && mlx->err_tab != NULL*/)
 		{
 			mlx->gnl = get_next_line(mlx->fd , &line);
-					mlx->err_tab = create_tab(line, &*mlx, y);
+		//	if (mlx->gnl == 1)
+				mlx->err_tab = create_tab(line, &*mlx, y);
+		printf("mlx->err_map_ber = %d, mlx->error_tab = %d, gnl = %d\n", mlx->error_map_ber, mlx->err_tab, mlx->gnl);
 			y++;
 		}
 	}
@@ -204,6 +218,7 @@ void	check_the_bear(char *nom_map, t_mlx *mlx)
 		err_cl(&*mlx, "La map doit être de type map.ber .");
 		return;
 	}
+//	free(mlx->err_tab);
 	mlx->len_x = mlx->len;
 	showtab(&*mlx);
 	bear_me(&*mlx);
@@ -556,7 +571,7 @@ void	mlx_struct_init(t_mlx *mlx)
 	mlx->gnl = 1;
 	mlx->len = -1;
 	mlx->P_x = -1;
-	mlx->E_x = - 1;
+	mlx->E_x = -1;
 	mlx->y = 0;
 	mlx->x = 0;
 

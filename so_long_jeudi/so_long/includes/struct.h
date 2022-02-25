@@ -7,8 +7,9 @@ typedef struct s_mlx {
 
 	/* -- BEAR -- */
 		int	gnl;
+		int	err;
 		int	error_map_ber;
-		int	**err_tab;
+		int	err_tab;
 		int	fd;
 		int	err_mur;
 		int	err_cot;

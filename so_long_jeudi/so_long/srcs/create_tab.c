@@ -55,7 +55,7 @@ int	line_to_tab(int **tab, t_mlx *mlx, char *line)
 			tab[mlx->len_y][x] = 67;
 		else if (line[x] == 'P')
 		{
-			if (mlx->P_x != -1)
+			if (mlx->P_x != -1)//si c'est diff de -1 il y a deja été déclaré donc pb
 				return (-1);
 			mlx->P_x = x;
 			mlx->P_y = mlx->len_y;
@@ -85,7 +85,7 @@ int	copy_tab(int **tab, t_mlx *mlx, char *line)
 {
 	int	x;
 	int	y;
-	int	err;
+//	int	err;
 
 //	x = 0;
 	y = 0;
@@ -103,13 +103,13 @@ int	copy_tab(int **tab, t_mlx *mlx, char *line)
 		y++;
 	}
 //	printf("go dans line_to_tab\n");
-	err = line_to_tab(tab, &*mlx, line);
+	mlx->error_map_ber = line_to_tab(tab, &*mlx, line);
 //	printf("ber suite = %d\n", mlx->ber[0][0]);
-//	showtab(tab, &*mlx);
-	return (1);
+//	showtab(&*mlx);
+	return (mlx->error_map_ber);
 }
 
-int	**create_tab(char	*line, t_mlx *mlx, int y)
+int	create_tab(char	*line, t_mlx *mlx, int y)
 {
 //	int	x;
 	int	z;
@@ -122,26 +122,31 @@ int	**create_tab(char	*line, t_mlx *mlx, int y)
 //	mlx->len_x = x;
 	if (mlx->len == -1)
 		mlx->len = mlx->len_x;
-	printf("len = %d &  len_x = %d\n", mlx->len, mlx->len_x);
-	if (mlx->len_x != mlx->len)
+//	printf("len = %d &  len_x = %d\n", mlx->len, mlx->len_x);
+	if (mlx->len_x != mlx->len/* && mlx->gnl < 0*/)
 	{	
 	printf("passedans len_x %d, len =%d, '%s'\n", mlx->len_x, mlx->len, line);
 		mlx->err_len = -1;
-		return (NULL);
+		return (-1);
 	}
+/*	if (mlx->gnl == 0)
+		return (0);*/
 	tab = (int **)malloc(sizeof(int *) * (mlx->len_y + 1));
 	if (!tab)
-		return (NULL);
+		return (-1);
 	while (z <= mlx->len_y)
 	{
+		printf("passe dans le malloc\n");
 		tab[z] = (int *)malloc(sizeof(int) * (mlx->len_x + 1));
 		if (!tab)
-			return (NULL);
+			return (-1);
 		z++;
 	}
-//	printf("go dans copy%d\n", mlx->len_x);
-	copy_tab(tab, &*mlx, line);
-	//free(tab);
-//	printf("%d BER \n", mlx->ber[0][0]);
-	return (tab);
+	printf("go dans copy%d\n", mlx->len_x);
+	mlx->error_map_ber = copy_tab(tab, &*mlx, line);
+//	free(tab);
+//	if (mlx->gnl == 0)
+//		free(tab);//	tab = NULL;
+	printf("%d BER \n", mlx->ber[0][0]);
+	return (0);
 }
