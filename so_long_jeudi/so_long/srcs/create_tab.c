@@ -123,7 +123,9 @@ int	create_tab(char	*line, t_mlx *mlx, int y)
 	if (mlx->len == -1)
 		mlx->len = mlx->len_x;
 //	printf("len = %d &  len_x = %d\n", mlx->len, mlx->len_x);
-	if (mlx->len_x != mlx->len/* && mlx->gnl < 0*/)
+	if (mlx->gnl == 0)
+		return(0);
+	if (mlx->len_x != mlx->len)
 	{	
 	printf("passedans len_x %d, len =%d, '%s'\n", mlx->len_x, mlx->len, line);
 		mlx->err_len = -1;
