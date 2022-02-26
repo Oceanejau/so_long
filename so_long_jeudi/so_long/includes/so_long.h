@@ -20,6 +20,7 @@
 int		p_et_e(t_mlx *mlx, char c, int x, int y);
 int		ft_strlen(char *str);
 
+void	coti(t_mlx *mlx, int x, int y);
 void	mlx_struct_suite(t_mlx *mlx, char **av);
 
 void	obsy(t_mlx *mlx);
@@ -72,9 +73,9 @@ char	*lolilol(char **str, char *strr, int x, int y);
 void	ft_putchar(char c);
 
 void	ft_putnbr(int n);
-
+*/
 char	*ft_strjoin(char *s1, char *s2);
-
+/*
 int		keep_rest(int keycode, t_mlx *mlx);
 void	iff(t_mlx *mlx, int x, int y);
 void	sprint_map(t_mlx *mlx);
