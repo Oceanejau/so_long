@@ -436,7 +436,7 @@ void	mlx_struct_suite(t_mlx *mlx, char **av)
 	mlx->nid = NULL;
 //	if (ac != 2)
 //		return (err("Error:\n Doit recevoir 2 arguments uniquement", -1));
-	check_the_bear(av[1], &*mlx);
+	check_the_bear(av[1], &*mlx, 0, 0);
 	return ;
 }
 void	tarte(t_mlx *mlx)

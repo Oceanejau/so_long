@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:46:28 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 06:47:17 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 07:16:35 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -33,17 +33,13 @@ void	bear_me(t_mlx *mlx)
 		err_cl(&*mlx, "");
 	else if (mlx->error_map_ber == -1)
 		err_cl(&*mlx, "Probleme de map.");
-	return;
+	return ;
 }
 
-void	check_the_bear(char *nom, t_mlx *mlx)
+void	check_the_bear(char *nom, t_mlx *mlx, int x, int y)
 {
 	char	*line;
-	int	y;
-	int	x;
 
-	x = 0;
-	y = 0;
 	while (nom[x] != '\0')
 		x++;
 	if (nom[x - 4] == '.' && nom[x - 3] == 'b' && nom[x - 2] == 'e'
@@ -54,11 +50,11 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 		if (mlx->fd == -1)
 		{
 			err_cl(&*mlx, "N'a pas pu lire le fichier .");
-			return;
+			return ;
 		}
 		while (mlx->gnl == 1 && mlx->err_tab != -1)
 		{
-			mlx->gnl = get_next_line(mlx->fd , &line);
+			mlx->gnl = get_next_line(mlx->fd, &line);
 			mlx->err_tab = create_tab(line, &*mlx, y);
 			free(line);
 			y++;
@@ -68,7 +64,7 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 	{
 		mlx->error_map_ber = -1;
 		err_cl(&*mlx, "La map doit être de type map.ber.");
-		return;
+		return ;
 	}
 	mlx->len_x = mlx->len;
 	bear_me(&*mlx);

@@ -43,7 +43,7 @@ void	move_char_top(t_mlx *mlx, int x, int y);*/
 
 void	bear_me(t_mlx *mlx);
 //void	check(t_mlx *mlx);
-void	check_the_bear(char *nom, t_mlx *mlx);
+void	check_the_bear(char *nom, t_mlx *mlx, int x, int y);
 
 int		err_cl(t_mlx *mlx, char*str);
 /*int		err(char *str, int x);
