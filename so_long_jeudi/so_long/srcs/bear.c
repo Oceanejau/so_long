@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:46:28 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 10:16:56 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 11:11:21 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -77,6 +77,11 @@ void	check_the_bear(char *nom, t_mlx *mlx, int x, int y)
 	if (mlx->close == 1)
 		return ;
 	mlx->len_x = mlx->len;
+	if (mlx->err_char == -1)
+	{
+		err_cl(&*mlx, "Chars autorises: 0 1 E P C.");
+		return ;
+	}
 	bear_me(&*mlx);
 	return ;
 }

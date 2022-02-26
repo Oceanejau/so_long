@@ -6,37 +6,10 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:26:52 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 08:46:58 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 10:53:02 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
-
-/*int	ft_strlen(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	p_et_e(t_mlx *mlx, char c, int x, int y)
-{
-	if (c == 'P')
-	{
-		mlx->p_x = x;
-		mlx->p_y = y;
-		return (80);
-	}
-	else if (c == 'E')
-	{
-		mlx->e_x = x;
-		mlx->e_y = y;
-		return (69);
-	}
-	return (-1);
-}*/
 
 int	line_to_tab(int **tab, t_mlx *mlx, char *line)
 {
@@ -55,6 +28,8 @@ int	line_to_tab(int **tab, t_mlx *mlx, char *line)
 			tab[mlx->len_y][x] = 67;
 		else if (line[x] == 'P' || line[x] == 'E')
 			tab[mlx->len_y][x] = p_et_e(&*mlx, line[x], x, mlx->len_y);
+		else
+			mlx->err_char = -1;
 		x++;
 	}
 	if (mlx->ber)
@@ -114,6 +89,8 @@ int	starter(t_mlx *mlx, int y, int **tab, char *line)
 		z++;
 	}
 	copy_tab(tab, &*mlx, line);
+	if (mlx->error_map_ber == -1)
+		return (free_tab(tab, y, -1));
 	return (0);
 }
 

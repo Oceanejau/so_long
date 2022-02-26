@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 08:09:10 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 10:13:17 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 11:00:27 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -23,6 +23,7 @@ void	mlx_struct_init(t_mlx *mlx, char **av)
 	mlx->err_col = 0;
 	mlx->close = 0;
 	mlx->gnl = 1;
+	mlx->err_char = 0;
 	mlx->len = -1;
 	mlx_struct_suite(&*mlx, av);
 	return ;

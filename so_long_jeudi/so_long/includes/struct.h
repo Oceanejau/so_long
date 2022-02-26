@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 08:18:48 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 08:21:21 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 10:53:32 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef STRUCT_H
@@ -26,6 +26,7 @@ typedef struct s_mlx {
 	int		err_cot;
 	int		err_nid;
 	int		err_col;
+	int		err_char;
 
 	char	*path;
 	int		**ber;
