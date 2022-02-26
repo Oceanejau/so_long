@@ -13,7 +13,6 @@ INCLUDES = ./includes/
 SRCS = srcs/main.c\
 	srcs/get_next_line.c\
 	srcs/get_next_line_utils.c\
-	srcs/trgb.c\
 	srcs/ft_putnbr.c\
 	srcs/ft_putchar.c\
 	srcs/create_tab.c\

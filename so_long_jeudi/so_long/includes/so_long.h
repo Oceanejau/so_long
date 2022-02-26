@@ -46,13 +46,13 @@ void	bear_me(t_mlx *mlx);
 void	check_the_bear(char *nom, t_mlx *mlx, int x, int y);
 
 int		err_cl(t_mlx *mlx, char*str);
-/*int		err(char *str, int x);
+int		err(char *str, int x);
 
-int		little(t_mlx *mlx, char **av);
-int		loopy_loop(t_mlx *mlx);
+/*int		little(t_mlx *mlx, char **av);
+int		loopy_loop(t_mlx *mlx);*/
 int		close_it(t_mlx *mlx);
 
-
+/*
 int		line_to_tab(int **tab, t_mlx *mlx, char *line);
 void	copy_tab(int **tab, t_mlx *mlx, char *line);
 int		free_tab(int **tab, int y, int ret);
@@ -82,7 +82,7 @@ void	mlx_struct_init(t_mlx *mlx);
 void	showtab(t_mlx *mlx);
 int		main(int ac, char **av);
 
-#endif
+
 */
 void	move_char_left(t_mlx *mlx, int x, int y);
 void	move_char_right(t_mlx *mlx, int x, int y);
@@ -106,21 +106,6 @@ void		ft_putnbr(int n);
 void	sprint_map(t_mlx *mlx);
 void		showtab(t_mlx *mlx);
 int		create_tab(char *line, t_mlx *mlx, int y);
-typedef struct		s_long
-{
-		int	error_map_ber;
-		int	error;
-		int	fd;
-		int	size;
-		int	gnl;
-		
-		int	**mappy;
-		int	E_x;
-		int	E_y;
-		int	P_x;
-		int	P_y;
-}			t_long;
-
 
 int	main(int ac, char **av);
 
