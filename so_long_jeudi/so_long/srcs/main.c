@@ -141,7 +141,7 @@ int	keep_rest(int keycode, t_mlx *mlx)
 	return (0);
 }
 
-void	vide(t_mlx *mlx, int y, int x)
+/*void	vide(t_mlx *mlx, int y, int x)
 {
 	void	*tmp;
 	if (mlx->sol)
@@ -200,9 +200,9 @@ void	collect(t_mlx *mlx, int y, int x)
 		(y + mlx->y));
 	free(tmp);
 	return ;
-}
+}*/
 
-void	cot(t_mlx *mlx, int y, int x)
+/*void	cot(t_mlx *mlx, int y, int x)
 {
 	void	*tmp;
 
@@ -253,7 +253,7 @@ void	exi(t_mlx *mlx, int y, int x)
 	free(tmp);
 	return;
 }
-
+*/
 void	sprint_map(t_mlx *mlx)
 {
 	int	x;

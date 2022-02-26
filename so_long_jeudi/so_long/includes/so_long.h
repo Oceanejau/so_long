@@ -27,7 +27,7 @@ void	obsy(t_mlx *mlx);
 void	mercotte(t_mlx *mlx, int y);
 void	mapy(t_mlx *mlx);
 void	mur_test(t_mlx *mlx);
-/*
+
 void	exi(t_mlx *mlx, int y, int x);
 void	vide(t_mlx *mlx, int y, int x);
 void	mur(t_mlx *mlx, int y, int x);
@@ -36,7 +36,7 @@ void	collect(t_mlx *mlx, int y, int x);
 
 void	cot(t_mlx *mlx, int y, int x);
 void	cot_fin(t_mlx *mlx, int y, int x);
-
+/*
 void	move_char_left(t_mlx *mlx, int x, int y);
 void	move_char_right(t_mlx *mlx, int x, int y);
 void	move_char_bot(t_mlx *mlx, int x, int y);

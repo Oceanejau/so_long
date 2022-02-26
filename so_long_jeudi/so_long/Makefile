@@ -20,7 +20,9 @@ SRCS = srcs/main.c\
 	srcs/ft_error.c\
 	srcs/create_suite.c\
 	srcs/bear.c\
-	srcs/semi_parse.c
+	srcs/semi_parse.c\
+	srcs/map_img.c\
+	srcs/map_cot.c
 
 
 OS_NAME = $(shell uname -s)
