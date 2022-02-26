@@ -36,14 +36,8 @@ void	collect(t_mlx *mlx, int y, int x);
 
 void	cot(t_mlx *mlx, int y, int x);
 void	cot_fin(t_mlx *mlx, int y, int x);
-/*
-void	move_char_left(t_mlx *mlx, int x, int y);
-void	move_char_right(t_mlx *mlx, int x, int y);
-void	move_char_bot(t_mlx *mlx, int x, int y);
-void	move_char_top(t_mlx *mlx, int x, int y);*/
 
 void	bear_me(t_mlx *mlx);
-//void	check(t_mlx *mlx);
 void	check_the_bear(char *nom, t_mlx *mlx, int x, int y);
 
 int		err_cl(t_mlx *mlx, char*str);
@@ -75,10 +69,10 @@ void	ft_putchar(char c);
 void	ft_putnbr(int n);
 */
 char	*ft_strjoin(char *s1, char *s2);
-/*
+
 int		keep_rest(int keycode, t_mlx *mlx);
 void	iff(t_mlx *mlx, int x, int y);
-void	sprint_map(t_mlx *mlx);
+/*void	sprint_map(t_mlx *mlx);
 void	mlx_struct_init(t_mlx *mlx);
 void	showtab(t_mlx *mlx);
 int		main(int ac, char **av);

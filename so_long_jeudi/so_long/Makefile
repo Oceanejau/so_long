@@ -22,7 +22,8 @@ SRCS = srcs/main.c\
 	srcs/bear.c\
 	srcs/semi_parse.c\
 	srcs/map_img.c\
-	srcs/map_cot.c
+	srcs/map_cot.c\
+	srcs/print_map.c
 
 
 OS_NAME = $(shell uname -s)

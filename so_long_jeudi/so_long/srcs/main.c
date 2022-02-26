@@ -21,7 +21,7 @@
 	return ;
 }*/
 
-char	*ft_strjoin(char *s1, char *s2)
+/*char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -40,7 +40,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i++] = s2[j++];
 	str[i] = '\0';
 	return (str);
-}
+}*/
 
 /*void	mercotte(t_mlx *mlx, int y)
 {
@@ -120,7 +120,7 @@ void	mur_test(t_mlx *mlx)
 
 */
 
-int	keep_rest(int keycode, t_mlx *mlx)
+/*int	keep_rest(int keycode, t_mlx *mlx)
 {
 	mercotte(&*mlx, 0);
 	if (keycode == ESC)
@@ -140,7 +140,7 @@ int	keep_rest(int keycode, t_mlx *mlx)
 		return (0);
 	return (0);
 }
-
+*/
 /*void	vide(t_mlx *mlx, int y, int x)
 {
 	void	*tmp;
@@ -254,7 +254,7 @@ void	exi(t_mlx *mlx, int y, int x)
 	return;
 }
 */
-void	sprint_map(t_mlx *mlx)
+/*void	sprint_map(t_mlx *mlx)
 {
 	int	x;
 	int	y;
@@ -295,7 +295,7 @@ void	sprint_map(t_mlx *mlx)
 	}
 	return;
 }
-
+*/
 void	mlx_struct_init(t_mlx *mlx, char **av)
 {
 	mlx->end_loop = 0;
