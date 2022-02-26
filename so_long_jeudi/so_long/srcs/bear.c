@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:46:28 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 09:06:57 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 09:21:06 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -17,6 +17,8 @@ void	bear_me(t_mlx *mlx)
 	mur_test(&*mlx);
 	if (mlx->err_len == -1)
 		err_cl(&*mlx, "Toutes les lignes de la map ne sont pas égales.");
+	else if (mlx->gnl < 0)
+		err_cl(&*mlx, "");
 	else if (mlx->err_mur == -1)
 		err_cl(&*mlx, "Problème dans les murs de la map.");
 	else if (mlx->err_cot == 0)
