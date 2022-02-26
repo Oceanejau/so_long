@@ -26,10 +26,10 @@ typedef struct s_mlx {
 		int	len_x;
 		int	len_y;
 		int	err_len;
-		int	P_x;
-		int	P_y;
-		int	E_x;
-		int	E_y;
+		int	p_x;
+		int	p_y;
+		int	e_x;
+		int	e_y;
 		int	lon;//longeur image en pixels
 		int	lar;//largeur imahe en pixels
 		int	col;

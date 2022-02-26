@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 21:08:49 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/24 21:54:53 by ojauregu         ###   ########.fr       */
+/*   Created: 2022/02/26 06:25:55 by ojauregu          #+#    #+#             */
+/*   Updated: 2022/02/26 06:26:21 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
 int	ft_check(char *str)
@@ -36,8 +35,8 @@ char	*ft_read_suite(int fd, int n, char *strr, int *rid)
 		return (NULL);
 	buf[*rid] = '\0';
 	stock = (char *)malloc(sizeof(char) * (n + BUFFER_SIZE + 1));
-		if (!stock)
-			return (NULL);
+	if (!stock)
+		return (NULL);
 	x = 0;
 	while (x < n + BUFFER_SIZE + 1)
 		stock[x++] = '\0';
@@ -83,8 +82,8 @@ int	get_next_line(int fd, char **line)
 	if (!str[fd])
 	{
 		str[fd] = (char *)malloc(sizeof(char) * 1);
-			if (!str[fd])
-				return (-1);
+		if (!str[fd])
+			return (-1);
 		str[fd][0] = '\0';
 	}
 	rid = ft_read(&(str[fd]), fd);

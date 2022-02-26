@@ -18,7 +18,9 @@ SRCS = srcs/main.c\
 	srcs/ft_putchar.c\
 	srcs/create_tab.c\
 	srcs/move_it.c\
-	srcs/ft_error.c
+	srcs/ft_error.c\
+	srcs/create_suite.c\
+	srcs/bear.c
 
 
 OS_NAME = $(shell uname -s)
