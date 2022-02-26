@@ -63,9 +63,9 @@ typedef struct s_mlx {
 		char	*addr;
 		char	*dst;
 		int	offset;//mémoire de line_lenght
-		int	bits_per_pixy;
-		int	line_length;
-		int	endian;
+		int	pixy;
+		int	lh;
+		int	en;
 		int	close;
 		int	cot1_x;
 		int	cot1_y;

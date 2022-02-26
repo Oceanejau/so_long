@@ -65,12 +65,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-void	mercotte(t_mlx *mlx)
+void	mercotte(t_mlx *mlx, int y)
 {
-	int	y;
 	int	x;
 
-	y = 0;
 	mlx->col = 0;
 	while (y < mlx->len_y)
 	{
@@ -230,7 +228,7 @@ void	check_the_bear(char *nom, t_mlx *mlx)
 */
 int	keep_rest(int keycode, t_mlx *mlx)
 {
-	mercotte(&*mlx);
+	mercotte(&*mlx, 0);
 	if (keycode == ESC)
 	{
 		close_it(&*mlx);

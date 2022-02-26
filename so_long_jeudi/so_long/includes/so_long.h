@@ -23,7 +23,7 @@ int		ft_strlen(char *str);
 void	mlx_struct_suite(t_mlx *mlx, char **av);
 
 void	obsy(t_mlx *mlx);
-void	mercotte(t_mlx *mlx);
+void	mercotte(t_mlx *mlx, int y);
 void	mapy(t_mlx *mlx);
 void	mur_test(t_mlx *mlx);
 /*
@@ -92,7 +92,7 @@ void	move_char_top(t_mlx *mlx, int x, int y);
 int	err(char *str, int x);
 int	free_tab(int **tab, int y, int ret);
 int		ft_strlen(char *str);
-void		mercotte(t_mlx *mlx);
+//void		mercotte(t_mlx *mlx);
 void		cot(t_mlx *mlx, int y, int x);
 int		get_next_line(int fd, char **line);
 int		free_for_rtn(void *ptr, int rtn);
