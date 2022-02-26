@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:46:28 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 07:24:40 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 09:06:57 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -48,6 +48,8 @@ void	check_suite(t_mlx *mlx, int y, char *line, char *nom)
 	while (mlx->gnl == 1 && mlx->err_tab != -1)
 	{
 		mlx->gnl = get_next_line(mlx->fd, &line);
+		if (mlx->gnl < 0)
+			return ;
 		mlx->err_tab = create_tab(line, &*mlx, y);
 		free(line);
 		y++;

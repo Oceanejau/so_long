@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:26:52 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 06:43:13 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 08:46:58 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -93,7 +93,8 @@ int	free_tab(int **tab, int y, int ret)
 		free(tab[z]);
 		z++;
 	}
-	free(tab);
+	if (tab)
+		free(tab);
 	return (ret);
 }
 

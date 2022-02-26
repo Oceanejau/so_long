@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:41:27 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 08:14:02 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 09:05:52 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -23,7 +23,13 @@ int	err_cl(t_mlx *mlx, char *str)
 	write(2, "Error:\n ", 9);
 	write(2, str, ft_strlen(str));
 	ft_putchar('\n');
-	if (mlx->err_tab == -1 || mlx->err_mur == -1 || mlx->err_len == -1
+	if (mlx->error_map_ber == -1)
+	{
+		mlx->close = 1;
+		free(mlx->path);
+		return (-1);
+	}
+	else if (mlx->err_tab == -1 || mlx->err_mur == -1 || mlx->err_len == -1
 		|| mlx->err_cot != 1 || mlx->err_col == 0 || mlx->err_nid != 1
 		|| mlx->mlx == NULL)
 		mlx->close = free_tab(mlx->ber, mlx->len_y, 1);

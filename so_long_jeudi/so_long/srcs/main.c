@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 08:09:10 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 08:15:33 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 08:36:00 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -72,9 +72,9 @@ int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 
-	mlx_struct_init(&mlx, av);
 	if (ac != 2)
 		return (err("Error:\n Doit recevoir 2 arguments uniquement", -1));
+	mlx_struct_init(&mlx, av);
 	if (mlx.close == 1)
 		return (-1);
 	tarte(&mlx);

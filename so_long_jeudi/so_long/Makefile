@@ -1,5 +1,6 @@
 NAME = so_long
 
+BONUS = so_long_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
@@ -56,6 +57,12 @@ $(NAME) : $(OBJS) $(MLX_IS)libmlx.a
 .c.o:
 			@$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $(<:.c=.o)
 
+bonus:	$(BONUS)
+
+$(BONUS) : $(OBJS) $(MLX_IS)libmlx.a
+	@make -C $(MLX_LINUX)
+	@$(CC) $(CFLAGS) -I $(INCLUDES) $(OBJS) $(MLX_OS) -o $(BONUS)
+
 $(MLX_IS)libmlx.a :
 	@make -C $(MLX_IS) all
 
@@ -64,7 +71,7 @@ clean: clean
 	@make -C $(MLX_MAC) clean
 	@rm -rf $(OBJS) $(OBJS_D)
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS)
 re:	fclean all
 
 .PHONY: all clean fclean re
