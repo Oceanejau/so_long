@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/09 12:22:29 by ojauregu          #+#    #+#             */
-/*   Updated: 2020/09/09 12:22:32 by ojauregu         ###   ########.fr       */
+/*   Created: 2022/02/26 07:26:27 by ojauregu          #+#    #+#             */
+/*   Updated: 2022/02/26 07:28:08 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
 char	*lolilol(char **str, char *strr, int x, int y)
 {
-	char *line;
-	char *temp;
+	char	*line;
+	char	*temp;
 
-	if (!(line = (char *)malloc(sizeof(char) * (x + 1))))
+	line = (char *)malloc(sizeof(char) * (x + 1));
+	if (!line)
 		return (NULL);
-	if (!(temp = (char *)malloc(sizeof(char) * (y + 1))))
+	temp = (char *)malloc(sizeof(char) * (y + 1));
+	if (!temp)
 		return (NULL);
 	x = 0;
 	y = 0;
@@ -51,7 +52,7 @@ char	*ft_nextline(char **str)
 	return (lolilol(str, strr, x, y));
 }
 
-int		free_for_rtn(void *ptr, int rtn)
+int	free_for_rtn(void *ptr, int rtn)
 {
 	free(ptr);
 	return (rtn);
