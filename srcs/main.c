@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 08:09:10 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 11:00:27 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 12:13:43 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -55,9 +55,10 @@ void	tarte(t_mlx *mlx)
 	mlx->lar = 50 * mlx->len_y;
 	return ;
 }
-
+#include <stdio.h>
 int	loopy_loop(t_mlx *mlx)
 {
+//	printf("louppy\n");
 	if (mlx->close == 0)
 	{
 		if (mlx->ber[mlx->cot_y][mlx->cot_x] == 81 && mlx->col == 0)
@@ -76,9 +77,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (err("Error:\n Doit recevoir 2 arguments uniquement", -1));
 	mlx_struct_init(&mlx, av);
+//	printf("LOLOL\n");
+//	fflush(stdout);
 	if (mlx.close == 1)
 		return (-1);
+//	printf("bsdkbsdjhvb\n");
 	tarte(&mlx);
+//	print("sdkbfkd\n");
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.lon, mlx.lar, "so_long");
 	sprint_map(&mlx);

@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:41:27 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 10:19:10 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 12:34:26 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -47,7 +47,8 @@ int	close_it(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->cot);
 	mlx_destroy_image(mlx->mlx, mlx->sun);
 	mlx_destroy_image(mlx->mlx, mlx->sol);
-	mlx_destroy_image(mlx->mlx, mlx->obs);
+	if (mlx->obsy == 1)
+		mlx_destroy_image(mlx->mlx, mlx->obs);
 	mlx_destroy_image(mlx->mlx, mlx->nid);
 	mlx_destroy_image(mlx->mlx, mlx->mur);
 	while (y < mlx->len_y)

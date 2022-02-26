@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 07:42:03 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 07:49:46 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 12:18:04 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -17,13 +17,17 @@ void	obsy(t_mlx *mlx)
 	int	y;
 
 	y = 1;
+	mlx->obsy = 0;
 	while (y < mlx->len_y - 1)
 	{
 		x = 1;
 		while (x < mlx->len_x - 1)
 		{
 			if (mlx->ber[y][x] == 1)
+			{
 				mlx->ber[y][x] = 2;
+				mlx->obsy = 1;
+			}
 			x++;
 		}
 		y++;
