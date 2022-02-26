@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:43:22 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 06:45:22 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 07:18:59 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -37,4 +37,3 @@ int	p_et_e(t_mlx *mlx, char c, int x, int y)
 	}
 	return (-1);
 }
-
