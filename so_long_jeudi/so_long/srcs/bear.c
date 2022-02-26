@@ -6,7 +6,7 @@
 /*   By: ojauregu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 06:46:28 by ojauregu          #+#    #+#             */
-/*   Updated: 2022/02/26 09:21:06 by ojauregu         ###   ########.fr       */
+/*   Updated: 2022/02/26 10:16:56 by ojauregu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -17,8 +17,6 @@ void	bear_me(t_mlx *mlx)
 	mur_test(&*mlx);
 	if (mlx->err_len == -1)
 		err_cl(&*mlx, "Toutes les lignes de la map ne sont pas égales.");
-	else if (mlx->gnl < 0)
-		err_cl(&*mlx, "");
 	else if (mlx->err_mur == -1)
 		err_cl(&*mlx, "Problème dans les murs de la map.");
 	else if (mlx->err_cot == 0)
@@ -45,6 +43,7 @@ void	check_suite(t_mlx *mlx, int y, char *line, char *nom)
 	if (mlx->fd == -1)
 	{
 		err_cl(&*mlx, "N'a pas pu lire le fichier .");
+		mlx->close = 1;
 		return ;
 	}
 	while (mlx->gnl == 1 && mlx->err_tab != -1)
@@ -75,6 +74,8 @@ void	check_the_bear(char *nom, t_mlx *mlx, int x, int y)
 		err_cl(&*mlx, "La map doit être de type map.ber.");
 		return ;
 	}
+	if (mlx->close == 1)
+		return ;
 	mlx->len_x = mlx->len;
 	bear_me(&*mlx);
 	return ;
