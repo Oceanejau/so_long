@@ -16,4 +16,7 @@ Toutes les maps sont dans le dossier maps.
 	./so_long maps/map1.ber
 
 
-![](https://github.com/Oceanejau/so_long/blob/main/so_long.gif)
+<p align="center">
+  <img src="https://github.com/Oceanejau/so_long/blob/main/so_long.gif" alt="GIF du jeu">
+</p>
+
