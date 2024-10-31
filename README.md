@@ -13,6 +13,7 @@ Toutes les maps sont dans le dossier maps.
 
 	make fclean
 
+	./so_long maps/map1.ber
 
-./so_long maps/map1.ber
+
 ![](https://github.com/Oceanejau/so_long/blob/main/so_long.gif)
